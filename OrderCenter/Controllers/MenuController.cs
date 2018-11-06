@@ -17,7 +17,7 @@ namespace OrderCenter.Controllers
 
             MenusModel model = new MenusModel();
             model.id = Guid.NewGuid().ToString();
-            model.name = "用户管理1";
+            model.name = "用户管理";
             model.route = "";
             model.item = new List<MenusModel>();
             MenusModel modelChildren = new MenusModel();
