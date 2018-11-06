@@ -27,7 +27,7 @@ namespace OrderCenter.Controllers
             }
             else
             {
-                model = _list.Find(x => x.id == model.id);
+                model = _list.Find(x => x.id == m.id);
                 model.account = m.account;
                 model.address = m.address;
                 model.age = m.age;
