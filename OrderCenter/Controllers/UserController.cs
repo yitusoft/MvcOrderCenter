@@ -44,8 +44,8 @@ namespace OrderCenter.Controllers
             };
 
         }
-        [HttpPost]
-        public ApiResult<int> delete([FromBody] string id)
+        [HttpGet]
+        public ApiResult<int> delete(string id)
         {
             _list.RemoveAll(x => x.id == id);
             return new ApiResult<int>()
@@ -83,11 +83,11 @@ namespace OrderCenter.Controllers
             };
         }
 
-        [HttpGet]
-        public ApiResult<List<UserModel>> getList(int pageIndex, int pageSize)
+        [HttpPost]
+        public ApiResult<List<UserModel>> getList(UserModel m)
         {
             List<UserModel> list = new List<UserModel>();
-            list = _list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            list = _list.Skip((m.pageIndex - 1) * m.pageSize).Take(m.pageSize).ToList();
             int total = _list.Count;
             return new ApiResult<List<UserModel>>()
             {

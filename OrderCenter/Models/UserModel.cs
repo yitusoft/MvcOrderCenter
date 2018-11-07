@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OrderCenter.Models
 {
-    public class UserModel
+    public class UserModel:BaseModel
     {
         public string id { get; set; }
         public string account { get; set; }
