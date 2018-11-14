@@ -21,7 +21,7 @@ namespace OrderCenter.Controllers
             return new ApiResult<UserModel>()
             {
                 ReturnCode = 0,
-                Message="",
+                Message = "",
                 Result = model
             };
         }

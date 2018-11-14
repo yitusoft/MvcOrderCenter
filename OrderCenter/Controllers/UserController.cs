@@ -19,10 +19,10 @@ namespace OrderCenter.Controllers
                 model.address = m.address;
                 model.age = m.age;
                 model.name = m.name;
-                model.createDate = DateTime.Now;
+                model.createDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 model.id = Guid.NewGuid().ToString();
                 model.status = m.status;
-                model.types = m.types;
+                model.type = m.type;
                 _list.Add(model);
             }
             else
@@ -32,9 +32,9 @@ namespace OrderCenter.Controllers
                 model.address = m.address;
                 model.age = m.age;
                 model.name = m.name;
-                model.createDate = DateTime.Now;
+                model.createDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 model.status = m.status;
-                model.types = m.types;
+                model.type = m.type;
             }
             return new ApiResult<int>()
             {
@@ -87,8 +87,26 @@ namespace OrderCenter.Controllers
         public ApiResult<List<UserModel>> getList(UserModel m)
         {
             List<UserModel> list = new List<UserModel>();
-            list = _list.Skip((m.pageIndex - 1) * m.pageSize).Take(m.pageSize).ToList();
-            int total = _list.Count;
+            list = _list.Where(a => a.account == m.account || string.IsNullOrWhiteSpace(m.account)).ToList();
+            switch (m.orderBy.ToLower().Trim())
+            {
+                case "account":
+                    list = (from s in list orderby s.account select s).ToList();
+
+                    break;
+                case "account desc":
+                    list = (from s in list orderby s.account descending select s).ToList();
+                    break;
+                case "age":
+                    list = (from s in list orderby s.age select s).ToList();
+
+                    break;
+                case "age desc":
+                    list = (from s in list orderby s.age descending select s).ToList();
+                    break;
+            }
+            list = list.Skip((m.pageIndex - 1) * m.pageSize).Take(m.pageSize).ToList();
+            int total = list.Count;
             return new ApiResult<List<UserModel>>()
             {
                 ReturnCode = 0,

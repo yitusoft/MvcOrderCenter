@@ -7,11 +7,11 @@ namespace OrderCenter.Models
 {
     public class BindListModel
     {
-        public string key  { get; set; }
+        public string key { get; set; }
         public string text { get; set; }
         public int id { get; set; }
         public int value { get; set; }
-        
-        
+        public string label { get; set; }
+        public List<BindListModel> children { get; set; }
     }
 }
