@@ -106,7 +106,7 @@ namespace OrderCenter.Controllers
                     break;
             }
             list = list.Skip((m.pageIndex - 1) * m.pageSize).Take(m.pageSize).ToList();
-            int total = list.Count;
+            int total = _list.Count;
             return new ApiResult<List<UserModel>>()
             {
                 ReturnCode = 0,
