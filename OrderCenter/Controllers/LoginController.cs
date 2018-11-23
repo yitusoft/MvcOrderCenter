@@ -27,6 +27,40 @@ namespace OrderCenter.Controllers
         }
 
         [HttpGet]
+        public ApiResult<UserModel> updatePassword(string password, string newpPssword)
+        {
+            UserModel model = new UserModel();
+            model = _list.Find(x => x.account == "admin");
+            if (model != null)
+            {
+                _isLogin = false;
+            }
+            return new ApiResult<UserModel>()
+            {
+                ReturnCode = 0,
+                Message = "",
+                Result = model
+            };
+        }
+
+        [HttpGet]
+        public ApiResult<UserModel> unlockLogin(string password)
+        {
+            UserModel model = new UserModel();
+            model = _list.Find(x => x.account == "admin");
+            if (model != null)
+            {
+                _isLogin = true;
+            }
+            return new ApiResult<UserModel>()
+            {
+                ReturnCode = 0,
+                Message = "",
+                Result = model
+            };
+        }
+
+        [HttpGet]
         public ApiResult<UserModel> checkLogin()
         {
             UserModel model = null;

@@ -23,12 +23,12 @@ namespace OrderCenter.Controllers
             MenusModel modelChildren = new MenusModel();
             modelChildren.id = Guid.NewGuid().ToString();
             modelChildren.name = "用户列表";
-            modelChildren.route = "user-list";
+            modelChildren.route = "user-List";
             model.item.Add(modelChildren);
             modelChildren = new MenusModel();
             modelChildren.id = Guid.NewGuid().ToString();
             modelChildren.name = "用户新增";
-            modelChildren.route = "user-edit";
+            modelChildren.route = "user-Edit";
             model.item.Add(modelChildren);
             list.Add(model);
             model = new MenusModel();
@@ -39,7 +39,7 @@ namespace OrderCenter.Controllers
             model.item = new List<MenusModel>();
             modelChildren.id = Guid.NewGuid().ToString();
             modelChildren.name = "权限列表";
-            modelChildren.route = "role-list";
+            modelChildren.route = "role-List";
             model.item.Add(modelChildren);
             list.Add(model);
             return new ApiResult<List<MenusModel>>()
