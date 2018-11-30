@@ -11,6 +11,7 @@ namespace OrderCenter.Models
         public string upId { get; set; }
         public string name { get; set; }
         public string route { get; set; }
+        public string icon { get; set; }
         public List<MenusModel> item { get; set; }
     }
 }

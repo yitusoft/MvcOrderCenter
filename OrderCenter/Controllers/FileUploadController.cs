@@ -18,7 +18,7 @@ namespace OrderCenter.Controllers
             var file = HttpContext.Current.Request.Files[0];
             string type = HttpContext.Current.Request.Form["type"];
             string filename = file.FileName;
-            string SavePath = ConfigurationManager.AppSettings["filepath"].TrimEnd("/".ToCharArray())+"/"+ type;
+            string SavePath = ConfigurationManager.AppSettings["filepath"].TrimEnd("/".ToCharArray()) + "/" + type;
 
             if (!Directory.Exists(SavePath))
             {
@@ -34,7 +34,7 @@ namespace OrderCenter.Controllers
             model.url = path;
             model.path = path;
             model.newname = name;
-            model.size = file.ContentLength/1024;
+            model.size = file.ContentLength / 1024;
             return new ApiResult<fileModel>()
             {
                 ReturnCode = 0,

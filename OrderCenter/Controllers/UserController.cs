@@ -87,7 +87,12 @@ namespace OrderCenter.Controllers
         public ApiResult<List<UserModel>> getList(UserModel m)
         {
             List<UserModel> list = new List<UserModel>();
+            int total = _list.Count;
             list = _list.Where(a => a.account == m.account || string.IsNullOrWhiteSpace(m.account)).ToList();
+            if (!string.IsNullOrWhiteSpace(m.account))
+            {
+                total = list.Count;
+            }
             switch (m.orderBy.ToLower().Trim())
             {
                 case "account":
@@ -106,7 +111,7 @@ namespace OrderCenter.Controllers
                     break;
             }
             list = list.Skip((m.pageIndex - 1) * m.pageSize).Take(m.pageSize).ToList();
-            int total = _list.Count;
+
             return new ApiResult<List<UserModel>>()
             {
                 ReturnCode = 0,
